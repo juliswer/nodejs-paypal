@@ -1,5 +1,5 @@
 import express from 'express';
-import paymentRoutes from "./routes/payment.routes";
+import paymentRoutes from "./routes/payment.routes.js";
 
 const app = express();
 
