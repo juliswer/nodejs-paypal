@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET} from '../config.js';
 
-export const createOrder = (req, res) => {
+export const createOrder = async (req, res) => {
     const order = {
         intent: 'CAPTURE',
         purchase_units: [
@@ -22,12 +22,14 @@ export const createOrder = (req, res) => {
         }
     }
 
-    axios.post(`${PAYPAL_API}/v2/checkout/orders`, order, {
+    const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders`, order, {
         auth: {
             username: PAYPAL_API_CLIENT,
             password: PAYPAL_API_SECRET
         }
     })
+
+    console.log(response.data)
 }
 
 export const captureOrder = (req, res) => {
